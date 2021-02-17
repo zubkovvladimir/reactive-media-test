@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="./source/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <body class="page">
-    <header class="page-header">
-      <nav class="page-menu">
-        <a class="page-menu__logo">
+  <body>
+    <header class="header">
+      <nav class="menu">
+        <a class="menu__logo">
           <svg width="31" height="56" viewBox="0 0 31 56" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14.7907 24.9148L12.6102 25.4333C12.7941 24.6555 12.7941 23.8518 12.6102 23.0481L14.7907 23.5926L14.239 21.5444C15.0797 21.7259 15.9203 21.7259 16.7347 21.5444L16.183 23.6185L18.3636 23.1C18.1797 23.8778 18.1797 24.6555 18.3636 25.4333L16.183 24.9148L16.7347 26.963C15.8941 26.8074 15.0534 26.8074 14.239 26.963L14.7907 24.9148Z" fill="white"/>
             <path d="M19.9136 45.6035C19.0992 45.9406 17.9432 46.148 17.1026 46.148C17.0763 47.185 17.4441 47.8591 17.7856 48.1183C17.7331 48.222 17.6543 48.3776 17.4441 48.4294C16.8399 48.5591 16.4721 48.6369 16.3932 48.948C16.5509 48.8961 16.761 48.8961 16.9187 48.9739C16.656 49.1035 16.5509 49.3109 16.5509 49.4665C16.7348 49.3887 16.9187 49.3887 17.0763 49.4665C16.8661 49.5443 16.7348 49.6998 16.7085 49.9072C17.1814 49.9072 17.2077 49.9072 17.6805 49.9072C18.1534 49.9072 18.4424 49.7776 18.889 49.7776C19.3356 49.7776 19.6771 49.9591 20.0975 49.9072C20.5178 49.8554 21.1221 49.285 20.3339 47.548C20.5178 47.6257 20.7543 47.6517 20.9119 47.6257C20.4916 47.2109 20.2551 46.7183 19.9136 45.6035Z" fill="white"/>
@@ -25,16 +25,16 @@
             <path d="M24.4322 52.8887C19.3093 52.8887 17.0763 54.185 15.5 55.9998C13.8975 54.185 11.6644 52.8887 6.5678 52.8887C2.62712 52.8887 0 51.9035 0 47.185C0 44.722 0 17.8887 0 17.8887H31C31 17.8887 31 31.1627 31 47.185C31 51.9035 28.3729 52.8887 24.4322 52.8887ZM29.6864 47.4442V19.185H1.31356V47.4442C1.31356 49.959 2.33814 50.6072 2.62712 50.8146C3.36271 51.359 4.43983 51.5924 6.30508 51.5924C10.3771 51.5924 13.3983 52.4479 15.5 54.185C17.6017 52.4479 20.6229 51.5924 24.6949 51.5924C26.5602 51.5924 27.6373 51.359 28.3729 50.8146C28.6619 50.5813 29.6864 49.959 29.6864 47.4442Z" fill="white"/>
           </svg>
         </a>
-        <p class="page-menu__header">Услуги и сервисы Пермского края</p>
-        <ul class="authorization">
+        <h1 class="menu__header">Услуги и сервисы Пермского края</h1>
+        <ul class="menu__auth">
           <li>
-            <a href="#" class="authorization__login">Выйти</a>
-            <a href="#" class="authorization__username">Константинопольский К.К</a>
+            <a href="#" class="auth__login">Выйти</a>
+            <a href="#" class="auth__username">Константинопольский К.К</a>
           </li>
         </ul>
       </nav>
     </header>
-    <main class="page-main">
+    <main class="main">
       <section class="intro">
         <h2>Выдача градостроительного плана земельного участка</h2>
         <p>Градостроительный план земельного участка выдается в целях обеспечения субъектов градостроительной деятельности информацией, необходимой для архитектурно-строительного проектирования, строительства, реконструкции объектов капитального строительства в границах земельного участка.</p>
@@ -44,26 +44,26 @@
         </div>
       </section>
       <form action="#" method="POST" class="form-declaration">
-        <fieldset class="form-declaration__fieldset declarant">
-          <h3 class="form-declaration__header">Выбор заявителя</h3>
+        <fieldset class="form-declaration__fieldset form-declaration__fieldset--declarant">
+          <h3 class="form-declaration__fieldset-header">Выбор заявителя</h3>
           <ul class="declarant-list">
             <li class="declarant-list__item">
-              <label for="individual" class="contacts-list__label">Константинопольский К.К. 
+              <label for="individual" class="declarant-list__label">Константинопольский К.К. 
                 <span class="declarant-list__type">Физическое лицо</span>
               </label>
-              <input type="radio" class="contacts-list__input" id="individual" name="declarant" required>
+              <input type="radio" class="declarant-list__input" id="individual" name="declarant" required>
             </li>
             <li class="declarant-list__item">
-              <label for="entity" class="contacts-list__label">ООО «Константинополь» 
+              <label for="entity" class="declarant-list__label">ООО «Константинополь» 
                 <span class="declarant-list__type">Юридическое лицо</span>
               </label>
-              <input type="radio" class="contacts-list__input" id="entity" name="declarant" required>
+              <input type="radio" class="declarant-list__input" id="entity" name="declarant" required>
             </li>
             <button type="button" class="btn">Продолжить</button>
           </ul>
         </fieldset>
-        <fieldset class="form-declaration__fieldset details">
-          <h3 class="form-declaration__header">Данные заявителя</h3>
+        <fieldset class="form-declaration__fieldset form-declaration__fieldset--details">
+          <h3 class="form-declaration__fieldset-header">Данные заявителя</h3>
           <ul class="contacts-list">
             <li class="contacts-list__item">
               <label for="surname" class="contacts-list__label">Фамилия</label>
@@ -120,28 +120,28 @@
           </ul>
           <button type="button" class="btn">Продолжить</button>
         </fieldset>
-        <fieldset class="form-declaration__fieldset agreement">
-          <h3 class="form-declaration__header">Согласие</h3>
-          <p class="agreement__description">Требуется ваше согласие по следующим пунктам:</p>
-          <ul class="agreement__list">
-            <li class="agreement__item">Я подтверждаю, что вся представленная информация является достоверной и точной;</li>
-            <li class="agreement__item">Я несу ответственность в соответствии с действующим законодательством Российской Федерации за предоставление заведомо ложных или неполных сведений;</li>
-            <li class="agreement__item">Я выражаю свое согласие на необходимое использование и обработку своих персональных данных, в том числе в информационных системах;</li>
-            <li class="agreement__item">Со сроками оказания государственной услуги ознакомлен.</li>
+        <fieldset class="form-declaration__fieldset form-declaration__fieldset--agreement">
+          <h3 class="form-declaration__fieldset-header">Согласие</h3>
+          <p class="form-declaration__fieldset-description">Требуется ваше согласие по следующим пунктам:</p>
+          <ul class="agreement-list">
+            <li class="agreement-list__item">Я подтверждаю, что вся представленная информация является достоверной и точной;</li>
+            <li class="agreement-list__item">Я несу ответственность в соответствии с действующим законодательством Российской Федерации за предоставление заведомо ложных или неполных сведений;</li>
+            <li class="agreement-list__item">Я выражаю свое согласие на необходимое использование и обработку своих персональных данных, в том числе в информационных системах;</li>
+            <li class="agreement-list__item">Со сроками оказания государственной услуги ознакомлен.</li>
           </ul>
-          <div>
-            <label for="agreement__all">Я подтверждаю свое согласие со всеми вышеперечисленными пунктами</label>
-            <input type="checkbox" id="agreement__all" name="agreement__all" required>
+          <div class="agreement-all">
+            <label for="agreement-all" class="agreement-all__label">Я подтверждаю свое согласие со всеми вышеперечисленными пунктами</label>
+            <input type="checkbox" id="agreement-all" name="agreement-all" class="agreement-all__input" required>
           </div>
-          <div>
-            <label for="agreement__email">Я уведомлен о том, что результат будет получен в электронном виде</label>
-            <input type="checkbox" id="agreement__email" name="agreement__email" required>
+          <div class="agreement-email">
+            <label for="agreement-email" class="agreement-email__label">Я уведомлен о том, что результат будет получен в электронном виде</label>
+            <input type="checkbox" id="agreement-email" name="agreement-email" class="agreement-email__input" required>
           </div>
-          <div class="agreement__warn">
-            <p>Пожалуйста, еще раз внимательно проверьте все данные перед отправкой</p>
+          <div class="agreement-warn">
+            <p class="agreement-warn__text">Пожалуйста, еще раз внимательно проверьте все данные перед отправкой</p>
           </div>
           <button type="submit" class="btn">Отправить</button>
-          <p>Нажимая кнопку «Отправить», вы соглашаетесь с 
+          <p class="agreement-notice">Нажимая кнопку «Отправить», вы соглашаетесь с 
             <a href="#">правилами хранения и обработки персональных данных</a>
           </p>
         </fieldset>
@@ -154,7 +154,6 @@
       <a href="#" class="btn">Вернуться в каталог</a>
       <a href="#" class="btn">Перейти в личный кабинет</a>
     </main>
-
   </body>
 </html>
 
