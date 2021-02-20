@@ -3,6 +3,10 @@
   background-color: @white;
   border-radius: 4px;
   margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 94px;
+  padding-right: 190px;
 }
 
 .fieldset__list {
@@ -10,36 +14,27 @@
   padding: 0;
   margin: 0;
   width: 448px;
-  margin-left: 81px;
 }
 
 .fieldset__header {
   .font-style(@gray, 32px, 21px, 700);
-  margin-left: 81px;
   margin-top: 18px;
   position: relative;
   margin-bottom: 24px;
 }
 
-.fieldset__header::before {
-  content: "1";
-    color: #fff;
-    padding-top: 8px;
-    padding-left: 17px;
-    font-size: 25px;
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    background-color: @deep-blue;
-    border-radius: 50%;
-    top: -8px;
-    left: -80px;
-}
-
 .fieldset__header--date {
   .font-style(@gray, 24px, 18px, 500);
+  margin: 0;
 }
 
 .fieldset__description {
   .font-style(@gray, 24px, 18px, 600);
+  word-spacing: -1px;
+  margin: 0;
+  margin-bottom: 6px;
+}
+
+.fieldset__header--passport {
+  margin-bottom: 15px;
 }

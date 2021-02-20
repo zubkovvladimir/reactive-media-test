@@ -1,19 +1,14 @@
 .declarant__label {
   .font-style(@gray);
+  padding-top: 14px;
+  padding-left: 46px;
+  padding-bottom: 14px;
+  padding-right: 62px;
+  border-radius: 4px;
+  border: 2px solid @light-gray;
 }
 
-.declarant__item:nth-child(1) .declarant__label::before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  border-radius: 50%;
-  border: 6px solid #0061d9;
-}
-
-.declarant__item:nth-child(2) .declarant__label::before {
+.declarant__label::before {
   content: "";
   width: 20px;
   height: 20px;
@@ -31,20 +26,37 @@
 
 .declarant__item {
   width: 448px;
-  padding-top: 14px;
-  padding-left: 46px;
-  padding-right: 69px;
-  padding-bottom: 14px;
   position: relative;
   margin-bottom: 16px;
   border-radius: 4px;
+  display: flex;
 }
 
-.declarant__item:nth-child(1) {
-  border: 2px solid @blue;
-}
-
-.declarant__item:nth-child(2) {
+.declarant__item {
   background-color: @light-gray;
-  padding-bottom: 18px;
+}
+
+.declarant__input:checked ~ .declarant__label::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  border-radius: 50%;
+  border: 6px solid #0061d9;
+}
+
+.declarant__input:checked ~ .declarant__label {
+  background-color: @white;
+}
+
+.declarant__input:checked ~ .declarant__label {
+  border: 2px solid @blue;
+  border-radius: 4px;
+}
+
+.declarant .fieldset__header::before {
+  content: "1";
+  .number();
 }
