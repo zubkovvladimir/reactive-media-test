@@ -1,3 +1,9 @@
+.declarant {
+  overflow: hidden;
+  .icon-step();
+  background-image: url("../../img/first-blue.svg");
+}
+
 .declarant__label {
   .font-style(@gray);
   padding-top: 14px;
@@ -56,7 +62,7 @@
   border-radius: 4px;
 }
 
-.declarant .fieldset__header::before {
-  content: "1";
-  .number();
+.declarant__wrap {
+  display: flex;
+  flex-direction: column;
 }

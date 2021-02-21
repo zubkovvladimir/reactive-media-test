@@ -51,104 +51,110 @@
       <form action="#" method="POST" class="form">
         <fieldset class="fieldset declarant">
           <h3 class="fieldset__header">Выбор заявителя</h3>
-          <ul class="fieldset__list declarant__list">
-            <li class="declarant__item">
-              <input type="radio" class="declarant__input visually-hidden" id="individual" name="declarant" required checked>
-              <label for="individual" class="declarant__label">
-                <b>Константинопольский К.К.</b> Физическое лицо
-              </label>
-            </li>
-            <li class="declarant__item">
-              <input type="radio"class="declarant__input visually-hidden" id="entity" name="declarant" required>
-              <label for="entity" class="declarant__label">
-                <b>ООО «Константинополь»</b> Юридическое лицо
-              </label>
-            </li>
-          </ul>
-          <button type="button" class="btn">Продолжить</button>
+          <div class="declarant__wrap">
+            <ul class="fieldset__list declarant__list">
+              <li class="declarant__item">
+                <input type="radio" class="declarant__input visually-hidden" id="individual" name="declarant" required checked>
+                <label for="individual" class="declarant__label">
+                  <b>Константинопольский К.К.</b> Физическое лицо
+                </label>
+              </li>
+              <li class="declarant__item">
+                <input type="radio"class="declarant__input visually-hidden" id="entity" name="declarant" required>
+                <label for="entity" class="declarant__label">
+                  <b>ООО «Константинополь»</b> Юридическое лицо
+                </label>
+              </li>
+            </ul>
+            <button type="button" class="btn">Продолжить</button>
+          </div>
         </fieldset>
         <fieldset class="fieldset details">
           <h3 class="fieldset__header">Данные заявителя</h3>
-          <ul class="fieldset__list contacts-list">
-            <li class="contacts-list__item">
-              <label for="surname" class="contacts-list__label">Фамилия</label>
-              <input type="text" class="contacts-list__input" id="surname" name="surname" placeholder="Константинопольский" required>
-            </li>
-            <li class="contacts-list__item">
-              <label for="name" class="contacts-list__label">Имя</label>
-              <input type="text" class="contacts-list__input" id="name" name="name" placeholder="Константин" required>
-            </li>
-            <li class="contacts-list__item">
-              <label for="patronymic" class="contacts-list__label">Отчество</label>
-              <input type="text" class="contacts-list__input" id="patronymic" name="patronymic" placeholder="Константинович" required>
-            </li>
-            <li class="contacts-list__item">
-              <label for="email" class="contacts-list__label">Электронная почта</label>
-              <input type="email" class="contacts-list__input" id="email" name="email" placeholder="konstantinopolskiy@mail.ru" required>
-            </li>
-            <li class="contacts-list__item">
-              <label for="tel" class="contacts-list__label">Телефон</label>
-              <input type="number" class="contacts-list__input" id="tel" name="tel" placeholder="+7 (901) 123-45-67" required>
-            </li>
-          </ul>
-          <h4 class="fieldset__header--passport">Документ, удостоверяющий личность</h4>
-          <ul class="fieldset__list passport-list">
-            <li class="passport-list__item">
-              <label for="document" class="passport-list__label">Документ</label>
-              <input type="text" class="passport-list__input" id="document" name="document" required placeholder="Паспорт">
-            </li>
-            <li class="passport-list__item">
-              <label for="series" class="passport-list__label">Серия</label>
-              <input type="number" class="passport-list__input" id="series" name="series" required placeholder="5700">
-            </li>
-            <li class="passport-list__item">
-              <label for="number" class="passport-list__label">Номер</label>
-              <input type="number" class="passport-list__input" id="number" name="number" required placeholder="555888">
-            </li>
-            <li class="passport-list__item">
-              <h5 class="fieldset__header--date">Когда выдан</h5>
-              <ul class="passport-list__date">
-                <li class="passport-list__item">
-                  <label for="day" class="passport-list__label">День</label>
-                  <input type="number" class="passport-list__input" id="day" name="day" required placeholder="19" maxlength="2">
-                </li>
-                <li class="passport-list__item">
-                  <label for="month" class="passport-list__label">Месяц</label>
-                  <input type="number" class="passport-list__input" id="month" name="month" required placeholder="10" maxlength="2">
-                </li class="passport-list__item">
-                <li class="passport-list__item">
-                  <label for="year" class="passport-list__label">Год</label>
-                  <input type="number" class="passport-list__input" id="year" name="year" required placeholder="1990" maxlength="4">
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <button type="button" class="btn">Продолжить</button>
+          <div class="details__wrap">
+            <ul class="fieldset__list contacts-list">
+              <li class="contacts-list__item">
+                <label for="surname" class="contacts-list__label">Фамилия</label>
+                <input type="text" class="contacts-list__input" id="surname" name="surname" maxlength="70" placeholder="Константинопольский" required>
+              </li>
+              <li class="contacts-list__item">
+                <label for="name" class="contacts-list__label">Имя</label>
+                <input type="text" class="contacts-list__input" id="name" name="name" maxlength="70" placeholder="Константин" required>
+              </li>
+              <li class="contacts-list__item">
+                <label for="patronymic" class="contacts-list__label">Отчество</label>
+                <input type="text" class="contacts-list__input" id="patronymic" name="patronymic" maxlength="70" placeholder="Константинович" required>
+              </li>
+              <li class="contacts-list__item">
+                <label for="email" class="contacts-list__label">Электронная почта</label>
+                <input type="email" class="contacts-list__input" id="email" name="email" maxlength="70" placeholder="konstantinopolskiy@mail.ru" required>
+              </li>
+              <li class="contacts-list__item">
+                <label for="tel" class="contacts-list__label">Телефон</label>
+                <input type="number" class="contacts-list__input" id="tel" name="tel" placeholder="+7 (901) 123-45-67" required>
+              </li>
+            </ul>
+            <h4 class="fieldset__header--passport">Документ, удостоверяющий личность</h4>
+            <ul class="fieldset__list passport-list">
+              <li class="passport-list__item">
+                <label for="document" class="passport-list__label">Документ</label>
+                <input type="text" class="passport-list__input" id="document" name="document" maxlength="70" required placeholder="Паспорт">
+              </li>
+              <li class="passport-list__item">
+                <label for="series" class="passport-list__label">Серия</label>
+                <input type="number" class="passport-list__input" id="series" name="series" required placeholder="5700">
+              </li>
+              <li class="passport-list__item">
+                <label for="number" class="passport-list__label">Номер</label>
+                <input type="number" class="passport-list__input" id="number" name="number" required placeholder="555888">
+              </li>
+              <li class="passport-list__item">
+                <h5 class="fieldset__header--date">Когда выдан</h5>
+                <ul class="passport-list__date">
+                  <li class="passport-list__item">
+                    <label for="day" class="passport-list__label">День</label>
+                    <input type="number" class="passport-list__input" id="day" name="day" required placeholder="19" maxlength="2">
+                  </li>
+                  <li class="passport-list__item">
+                    <label for="month" class="passport-list__label">Месяц</label>
+                    <input type="number" class="passport-list__input" id="month" name="month" required placeholder="10" maxlength="2">
+                  </li class="passport-list__item">
+                  <li class="passport-list__item">
+                    <label for="year" class="passport-list__label">Год</label>
+                    <input type="number" class="passport-list__input" id="year" name="year" required placeholder="1990" maxlength="4">
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <button type="button" class="btn">Продолжить</button>
+          </div>
         </fieldset>
         <fieldset class="fieldset agreement">
           <h3 class="fieldset__header">Согласие</h3>
-          <p class="fieldset__description">Требуется ваше согласие по следующим пунктам:</p>
-          <ul class="fieldset__list agreement__list">
-            <li class="agreement__item">Я подтверждаю, что вся представленная информация является достоверной и точной;</li>
-            <li class="agreement__item">Я несу ответственность в соответствии с действующим законодательством Российской Федерации за предоставление заведомо ложных или неполных сведений;</li>
-            <li class="agreement__item">Я выражаю свое согласие на необходимое использование и обработку своих персональных данных, в том числе в информационных системах;</li>
-            <li class="agreement__item">Со сроками оказания государственной услуги ознакомлен.</li>
-          </ul>
-          <div class="agreement__all agreement--flex">
-            <input type="checkbox" id="agreement-all" name="agreement-all" class="agreement__input visually-hidden" required>
-            <label for="agreement-all" class="agreement__label agreement--block">Я подтверждаю свое согласие со всеми вышеперечисленными пунктами</label>
+          <div class="agreement__wrap">
+            <p class="fieldset__description">Требуется ваше согласие по следующим пунктам:</p>
+            <ul class="fieldset__list agreement__list">
+              <li class="agreement__item">Я подтверждаю, что вся представленная информация является достоверной и точной;</li>
+              <li class="agreement__item">Я несу ответственность в соответствии с действующим законодательством Российской Федерации за предоставление заведомо ложных или неполных сведений;</li>
+              <li class="agreement__item">Я выражаю свое согласие на необходимое использование и обработку своих персональных данных, в том числе в информационных системах;</li>
+              <li class="agreement__item">Со сроками оказания государственной услуги ознакомлен.</li>
+            </ul>
+            <div class="agreement__all agreement--flex">
+              <input type="checkbox" id="agreement-all" name="agreement-all" class="agreement__input visually-hidden" required>
+              <label for="agreement-all" class="agreement__label agreement--block">Я подтверждаю свое согласие со всеми вышеперечисленными пунктами</label>
+            </div>
+            <div class="agreement__email agreement--flex">
+              <input type="checkbox" id="agreement-email" name="agreement-email" class="agreement__input visually-hidden" required>
+              <label for="agreement-email" class="agreement__label agreement--block">Я уведомлен о том, что результат будет получен в электронном виде</label>
+            </div>
+            <div class="agreement__warn agreement--block">
+              <p class="agreement__text">Пожалуйста, еще раз внимательно проверьте все данные перед отправкой</p>
+            </div>
+            <button type="submit" class="btn">Отправить</button>
+            <p class="agreement__notice">Нажимая кнопку «Отправить», вы соглашаетесь с
+              <a href="#">правилами хранения и обработки персональных данных</a>
+            </p>
           </div>
-          <div class="agreement__email agreement--flex">
-            <input type="checkbox" id="agreement-email" name="agreement-email" class="agreement__input visually-hidden" required>
-            <label for="agreement-email" class="agreement__label agreement--block">Я уведомлен о том, что результат будет получен в электронном виде</label>
-          </div>
-          <div class="agreement__warn agreement--block">
-            <p class="agreement__text">Пожалуйста, еще раз внимательно проверьте все данные перед отправкой</p>
-          </div>
-          <button type="submit" class="btn">Отправить</button>
-          <p class="agreement__notice">Нажимая кнопку «Отправить», вы соглашаетесь с
-            <a href="#">правилами хранения и обработки персональных данных</a>
-          </p>
         </fieldset>
       </form>
       <section class="message-succes">
@@ -157,12 +163,13 @@
           <p class="message-succes__text">Номер заявления <b>RU-1234567</b>. Максимальный срок предоставления услуги — 20 рабочих дней. Следите за статусом заявления в <a href="#">Личном кабинете</a>.</p>
           <p class="message-succes__text">Если у вас остались вопросы по оказанию услуги, пожалуйста, обращайтесь по телефону +7 (342) 123-45-67.</p>
           <div class="message-succes__wrap-btn">
-            <a href="#" class="btn message-succes__btn">Вернуться в каталог</a>
-            <a href="#" class="btn message-succes__btn message-succes__btn--personal">Перейти в личный кабинет</a>
+            <a href="index.html" class="btn message-succes__btn">Вернуться в каталог</a>
+            <a href="index.html" class="btn message-succes__btn message-succes__btn--personal">Перейти в личный кабинет</a>
           </div>
         </div>
       </section>
     </main>
+    <script src="./js/main.js"></script>
   </body>
 </html>
 

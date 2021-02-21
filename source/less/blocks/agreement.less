@@ -1,11 +1,13 @@
+.agreement {
+  overflow: hidden;
+  height: 80px;
+  .icon-step();
+  background-image: url("../../img/third-gray.svg");
+}
+
 .agreement__notice {
   .font-style(@gray, 20px, 14px, 300);
   margin-top: 3px;
-}
-
-.agreement .fieldset__header::before {
-  content: "3";
-  .number();
 }
 
 .agreement__list {
@@ -97,4 +99,9 @@
 
 .agreement__email {
   margin-bottom: 8px;
+}
+
+.agreement__wrap {
+  display: none;
+  flex-direction: column;
 }
