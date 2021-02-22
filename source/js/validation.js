@@ -100,8 +100,10 @@
 //     getInvalidities: function () {
 //       return this.invalidities.join('. \n');
 //     },
-//     checkValidity: function () {
-
+//     checkValidity: function (input) {
+//       if (input.value.length === 0) {
+//         this.addInvalidity('Заполните это поле.')
+//       }
 //     }
 //   }
 // })();
