@@ -1,0 +1,68 @@
+.declarant {
+  overflow: hidden;
+  .icon-step();
+  background-image: url("../../img/first-blue.svg");
+}
+
+.declarant__label {
+  .font-style(@gray);
+  padding-top: 14px;
+  padding-left: 46px;
+  padding-bottom: 14px;
+  padding-right: 62px;
+  border-radius: 4px;
+  border: 2px solid @light-gray;
+}
+
+.declarant__label::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  border-radius: 50%;
+  border: 2px solid @gray;
+}
+
+.declarant__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.declarant__item {
+  width: 448px;
+  position: relative;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  display: flex;
+}
+
+.declarant__item {
+  background-color: @light-gray;
+}
+
+.declarant__input:checked ~ .declarant__label::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  border-radius: 50%;
+  border: 6px solid #0061d9;
+}
+
+.declarant__input:checked ~ .declarant__label {
+  background-color: @white;
+}
+
+.declarant__input:checked ~ .declarant__label {
+  border: 2px solid @blue;
+  border-radius: 4px;
+}
+
+.declarant__wrap {
+  display: flex;
+  flex-direction: column;
+}

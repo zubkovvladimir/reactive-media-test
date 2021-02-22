@@ -1,0 +1,29 @@
+.contacts-list__label {
+  .font-style();
+}
+
+.contacts-list__label::placeholder {
+  .font-style();
+}
+
+.contacts-list__input::placeholder {
+  .font-style(rgba(59,66,86,1));
+}
+
+.contacts-list__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts-list__input {
+  margin-top: 8px;
+  border-radius: 4px;
+  border: 1px solid @transparent-grey;
+  height: 49px;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+.contacts-list__item:last-child .contacts-list__input  {
+  margin-bottom: 0;
+}
