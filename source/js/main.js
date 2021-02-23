@@ -19,15 +19,15 @@
   var hideThirdStep = function () {
     thirdStep.style.height = '80px';
     agreementWrap.style.display = 'none';
-    thirdStep.style.backgroundImage = 'url("../../img/third-gray.svg")';
+    thirdStep.style.backgroundImage = 'url("../img/third-gray.svg")';
   }
 
   var setStylesStep = function (resizeBlock, hideBlock, showBlock, backgroundBlock, stepNumber) {
     resizeBlock.style.height = '80px';
     showBlock.style.display = 'flex';
     hideBlock.style.display = 'none';
-    stepNumber === 'first' ? resizeBlock.style.backgroundImage = 'url("../../img/second-gray.svg")' : resizeBlock.style.backgroundImage = 'url("../../img/agree-icon.svg")';;
-    backgroundBlock.style.backgroundImage = 'url("../../img/' + stepNumber + '-blue.svg")';
+    stepNumber === 'first' ? resizeBlock.style.backgroundImage = 'url("../img/second-gray.svg")' : resizeBlock.style.backgroundImage = 'url("../img/agree-icon.svg")';;
+    backgroundBlock.style.backgroundImage = 'url("../img/' + stepNumber + '-blue.svg")';
   }
 
   var onFirstStepClick = function () {
