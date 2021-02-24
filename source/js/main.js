@@ -16,18 +16,22 @@
 
   var popup = document.querySelector('.message-succes');
 
+  detailsWrap.addEventListener('invalid', function () {
+    onSecondStepClick();
+  }, true);
+
   var hideThirdStep = function () {
     thirdStep.style.height = '80px';
-    agreementWrap.style.display = 'none';
-    thirdStep.style.backgroundImage = 'url("../img/third-gray.svg")';
+    thirdStep.style.backgroundImage = 'url("./img/third-gray.svg")';
   }
 
   var setStylesStep = function (resizeBlock, hideBlock, showBlock, backgroundBlock, stepNumber) {
     resizeBlock.style.height = '80px';
     showBlock.style.display = 'flex';
     hideBlock.style.display = 'none';
-    stepNumber === 'first' ? resizeBlock.style.backgroundImage = 'url("../img/second-gray.svg")' : resizeBlock.style.backgroundImage = 'url("../img/agree-icon.svg")';;
-    backgroundBlock.style.backgroundImage = 'url("../img/' + stepNumber + '-blue.svg")';
+    stepNumber === 'first' ? resizeBlock.style.backgroundImage = 'url("./img/second-gray.svg")'
+                           : resizeBlock.style.backgroundImage = 'url("./img/agree-icon.svg")';;
+    backgroundBlock.style.backgroundImage = 'url("./img/' + stepNumber + '-blue.svg")';
   }
 
   var onFirstStepClick = function () {
@@ -104,14 +108,15 @@
     }, 20);
   }
 
-
-  firstButton.addEventListener('click', onFirstButtonClick);
-  secondButton.addEventListener('click', onSecondButtonClick);
-
-  form.addEventListener('submit', function (evt) {
+  var onFormSubmit = function (evt) {
     evt.preventDefault();
 
     form.style.display = 'none';
     popup.style.display = 'block';
-  });
+  };
+
+
+  firstButton.addEventListener('click', onFirstButtonClick);
+  secondButton.addEventListener('click', onSecondButtonClick);
+  form.addEventListener('submit', onFormSubmit);
 })();

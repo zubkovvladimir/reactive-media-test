@@ -5,6 +5,12 @@
 
 .user-list__item {
   display: flex;
+  position: relative;
+}
+
+.user-list__item svg {
+  position: absolute;
+  left: -37px;
 }
 
 .user-list__login {
@@ -16,12 +22,12 @@
   position: relative;
 }
 
-.user-list__name::before {
-  content: "";
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  background-image: url("../img/user.svg");
-  top: 0;
-  left: -37px;
-}
+// .user-list__name::before {
+//   content: "";
+//   width: 24px;
+//   height: 24px;
+//   position: absolute;
+//   background-image: url("../img/user.svg");
+//   top: 0;
+//   left: -37px;
+// }

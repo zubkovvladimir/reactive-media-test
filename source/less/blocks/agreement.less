@@ -85,23 +85,35 @@
   background-color: @yellow;
   border-color: @yellow;
   padding-left: 50px;
+  position: relative;
 }
 
 .agreement__warn::before {
   content: "";
-  width: 24px;
-  height: 24px;
-  left: 14px;
-  top: 14px;
   border: none;
-  background-image: url("../img/bell.svg");
 }
 
 .agreement__email {
   margin-bottom: 8px;
+  position: relative;
 }
 
 .agreement__wrap {
   display: none;
   flex-direction: column;
+}
+
+.agreement__all {
+  position: relative;
+}
+
+.agreement__input {
+  left: 30px;
+  top: 37px;
+}
+
+.agreement__warn svg {
+  position: absolute;
+  top: 14px;
+  left: 14px;
 }
