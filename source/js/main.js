@@ -30,7 +30,7 @@
     showBlock.style.display = 'flex';
     hideBlock.style.display = 'none';
     stepNumber === 'first' ? resizeBlock.style.backgroundImage = 'url("./img/second-gray.svg")'
-                           : resizeBlock.style.backgroundImage = 'url("./img/agree-icon.svg")';;
+                          : resizeBlock.style.backgroundImage = 'url("./img/agree-icon.svg")';
     backgroundBlock.style.backgroundImage = 'url("./img/' + stepNumber + '-blue.svg")';
   }
 
