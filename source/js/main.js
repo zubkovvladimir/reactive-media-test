@@ -1,35 +1,47 @@
 'use strict';
 
 (function () {
+  var MIN_STEP_HEIGHT = 80;
+  var FIRST_STEP_MAX_HEIGHT = 344;
+  var SECOND_STEP_MAX_HEIGHT = 992;
+  var THIRD_STEP_MAX_HEIGHT = 855;
+
+  var IS_FIRST_STEP = 'first';
+  var IS_THIRD_STEP = 'third';
+  var IS_SECOND_STEP = 'second';
+
+  var TIME_SPEED_MULTIPLIER = 3;
+  var INTERVAL_DELAY = 20;
+
   var form = document.querySelector('.form');
 
   var firstStep = form.querySelector('.declarant');
   var secondStep = form.querySelector('.details');
   var thirdStep = form.querySelector('.agreement');
 
-  var firstButton = form.querySelector('.declarant .btn');
-  var secondButton = form.querySelector('.details .btn');
+  var firstButton = firstStep.querySelector('.btn');
+  var secondButton = secondStep.querySelector('.btn');
 
   var declarantWrap = form.querySelector('.declarant__wrap');
   var detailsWrap = form.querySelector('.details__wrap');
   var agreementWrap = form.querySelector('.agreement__wrap');
 
-  var popup = document.querySelector('.message-succes');
+  var message = document.querySelector('.message-succes');
 
   detailsWrap.addEventListener('invalid', function () {
     onSecondStepClick();
   }, true);
 
   var hideThirdStep = function () {
-    thirdStep.style.height = '80px';
+    thirdStep.style.height = MIN_STEP_HEIGHT + 'px';
     thirdStep.style.backgroundImage = 'url("./img/third-gray.svg")';
   }
 
   var setStylesStep = function (resizeBlock, hideBlock, showBlock, backgroundBlock, stepNumber) {
-    resizeBlock.style.height = '80px';
+    resizeBlock.style.height = MIN_STEP_HEIGHT + 'px';
     showBlock.style.display = 'flex';
     hideBlock.style.display = 'none';
-    stepNumber === 'first' ? resizeBlock.style.backgroundImage = 'url("./img/second-gray.svg")'
+    stepNumber === IS_FIRST_STEP ? resizeBlock.style.backgroundImage = 'url("./img/second-gray.svg")'
                           : resizeBlock.style.backgroundImage = 'url("./img/agree-icon.svg")';
     backgroundBlock.style.backgroundImage = 'url("./img/' + stepNumber + '-blue.svg")';
   }
@@ -37,47 +49,47 @@
   var onFirstStepClick = function () {
     var start = Date.now();
 
-    setStylesStep(secondStep, detailsWrap, declarantWrap, firstStep, 'first');
+    setStylesStep(secondStep, detailsWrap, declarantWrap, firstStep, IS_FIRST_STEP);
     hideThirdStep();
 
     var timer = setInterval(function () {
-      var timePassed = (Date.now() - start) * 3;
+      var timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
 
-      if (timePassed > 80) {
+      if (timePassed > MIN_STEP_HEIGHT) {
         firstStep.style.height = timePassed + 'px';
       }
 
-      if (timePassed > 344) {
-        firstStep.style.height = '344px';
+      if (timePassed > FIRST_STEP_MAX_HEIGHT) {
+        firstStep.style.height = FIRST_STEP_MAX_HEIGHT + 'px';
         clearInterval(timer);
 
         firstStep.removeEventListener('click', onFirstStepClick);
         secondStep.removeEventListener('click', onSecondStepClick);
       };
 
-    }, 20);
+    }, INTERVAL_DELAY);
   }
 
   var onFirstButtonClick = function () {
     var start = Date.now();
 
-    setStylesStep(firstStep, declarantWrap, detailsWrap, secondStep, 'second');
+    setStylesStep(firstStep, declarantWrap, detailsWrap, secondStep, IS_SECOND_STEP);
 
     var timer = setInterval(function () {
-      var timePassed = (Date.now() - start) * 3;
+      var timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
 
-      if (timePassed > 80) {
+      if (timePassed > MIN_STEP_HEIGHT) {
         secondStep.style.height = timePassed + 'px';
       }
 
-      if (timePassed > 992) {
-        secondStep.style.height = '992px';
+      if (timePassed > SECOND_STEP_MAX_HEIGHT) {
+        secondStep.style.height = SECOND_STEP_MAX_HEIGHT + 'px';
         clearInterval(timer);
 
         firstStep.addEventListener('click', onFirstStepClick);
       };
 
-    }, 20);
+    }, INTERVAL_DELAY);
   }
 
   var onSecondStepClick = function () {
@@ -89,30 +101,30 @@
   var onSecondButtonClick =  function () {
     var start = Date.now();
 
-    setStylesStep(secondStep, detailsWrap, agreementWrap, thirdStep, 'third');
+    setStylesStep(secondStep, detailsWrap, agreementWrap, thirdStep, IS_THIRD_STEP);
 
     var timer = setInterval(function () {
-      var timePassed = (Date.now() - start) * 3;
+      var timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
 
-      if (timePassed > 80) {
+      if (timePassed > MIN_STEP_HEIGHT) {
         thirdStep.style.height = timePassed + 'px';
       }
 
-      if (timePassed > 846) {
-        thirdStep.style.height = '855px';
+      if (timePassed > THIRD_STEP_MAX_HEIGHT) {
+        thirdStep.style.height = THIRD_STEP_MAX_HEIGHT + 'px';
         clearInterval(timer);
 
         secondStep.addEventListener('click', onSecondStepClick);
       };
 
-    }, 20);
+    }, INTERVAL_DELAY);
   }
 
   var onFormSubmit = function (evt) {
     evt.preventDefault();
 
     form.style.display = 'none';
-    popup.style.display = 'block';
+    message.style.display = 'block';
   };
 
 
