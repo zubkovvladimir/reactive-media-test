@@ -33,5 +33,5 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.KEY }}
           BRANCH: gh-pages
-          FOLDER: public
+          FOLDER: build
           CLEAN: true
