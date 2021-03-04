@@ -1,28 +1,29 @@
+name: build
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
   pull_request:
-    branches: '*'
+    branches: [ master ]
 
-name: Project check
 jobs:
-  check:
-    name: Check
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.18'
+      - uses: actions/checkout@v2
 
-    - uses: actions/checkout@master
-      name: Checkout
+      - name: Install 🔧
+        run: npm install
 
-    - name: Install dependencies
-      run: |
-        npm install
+      - name: Run Test 🔨
+        run: npm run test
 
-    - name: Run checks
-      run: |
-        npm test
+      - name: Build 👷
+        run: npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.KEY }}
+          BRANCH: gh-pages
+          FOLDER: build
+          CLEAN: true

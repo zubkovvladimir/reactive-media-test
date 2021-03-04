@@ -1,5 +1,7 @@
 <h1 align="center">Тестовое задание в Reactive Media</h1>
 
+[![CI](https://github.com/zubkovvladimir/reactive-media-test/actions/workflows/main.yml/badge.svg)](https://github.com/zubkovvladimir/reactive-media-test/actions/workflows/main.yml)
+
 Необходимо сверстать страницу в соответствии с дизайном. Реализовать смену шагов, дать возможность изменить любой заполненный шаг и вывести сообщения об успешном отправки формы. Шапка статична и остается на своем месте при скролле.
 Все поля обязательны для заполнения, маски ввода по желанию.
 
