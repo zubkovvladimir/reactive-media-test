@@ -1,24 +1,16 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
-
-
+name: build
 on:
-  
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ] 
+    branches: [ master ]
 
 jobs:
-  
-  build-and-deploy:    
+  build-and-deploy:
     runs-on: ubuntu-latest
-
-    
-    steps:      
+    steps:
       - uses: actions/checkout@v2
-      
+
       - name: Install 🔧
         run: npm install
 
@@ -27,7 +19,7 @@ jobs:
 
       - name: Build 👷
         run: npm run build
-        
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
