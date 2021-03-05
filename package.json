@@ -2,19 +2,19 @@
   "name": "reactive-media-test",
   "version": "17.0.0",
   "private": true,
-  "description": "Личный проект «Мишка» от HTML Academy",
+  "description": "Тестовое задание в Reactive Media",
   "devDependencies": {
     "@htmlacademy/editorconfig-cli": "1.x",
-    "autoprefixer": "^9.5.1",
     "browser-sync": "^2.26.14",
+    "del": "^6.0.0",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
     "gulp-concat": "^2.6.x",
     "gulp-csso": "^4.0.1",
     "gulp-htmlmin": "^5.0.x",
     "gulp-imagemin": "^7.1.0",
     "gulp-less": "4.0.x",
-    "gulp-plumber": "1.2.x",
-    "gulp-postcss": "8.0.x",
+    "gulp-plumber": "^1.2.x",
     "gulp-posthtml": "^3.0.5",
     "gulp-rename": "^2.0.0",
     "gulp-sourcemaps": "2.6.x",
@@ -32,11 +32,12 @@
     "stylelint": "stylelint \"source/less/**/*.less\" --syntax less",
     "test": "npm run editorconfig && npm run stylelint",
     "build": "gulp build",
-    "start": "gulp start"
+    "start": "gulp start",
+    "images": "gulp images"
   },
   "browserslist": [
     "last 2 versions",
-    "IE 11",
+    "IE 10",
     "Firefox ESR"
   ],
   "editorconfig-cli": [
@@ -51,7 +52,6 @@
     "node": "8.16"
   },
   "dependencies": {
-    "del": "^5.1.0",
     "jquery": "^3.6.0",
     "normalize.css": "^8.0.1"
   }
