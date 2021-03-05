@@ -1,18 +1,20 @@
 .contacts-list__label {
   .font-style();
-}
 
-.contacts-list__label::placeholder {
-  .font-style();
-}
-
-.contacts-list__input::placeholder {
-  .font-style(rgba(59,66,86,1));
+  &::placeholder {
+    .font-style();
+  }
 }
 
 .contacts-list__item {
   display: flex;
   flex-direction: column;
+
+  &:last-child {
+    .contacts-list__input {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .contacts-list__input {
@@ -22,8 +24,8 @@
   height: 49px;
   padding-left: 10px;
   margin-bottom: 15px;
-}
 
-.contacts-list__item:last-child .contacts-list__input {
-  margin-bottom: 0;
+  &::placeholder {
+    .font-style(rgba(59,66,86,1));
+  }
 }

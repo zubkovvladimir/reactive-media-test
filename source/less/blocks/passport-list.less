@@ -1,45 +1,52 @@
+.passport-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .passport-list__item {
   display: flex;
   flex-direction: column;
+
+  &:nth-child(1) {
+    width: 100%;
+  }
+
+  &:nth-child(2) {
+    width: 160px;
+    margin-right: 32px;
+  }
+
+  &:nth-child(3) {
+    margin-left: auto;
+    flex-grow: 1;
+  }
+
+  &:nth-child(4) {
+    width: 100%;
+  }
 }
 
-.passport-list__item:nth-child(1) {
-  width: 100%;
-}
+.passport-list__date {
+  list-style: none;
+  display: flex;
+  padding: 0;
 
-.passport-list__item:nth-child(2) {
-  width: 160px;
-  margin-right: 32px;
-}
+  .passport-list__item {
+    margin-left: 0;
+    width: 120px;
 
-.passport-list__item:nth-child(3) {
-  margin-left: auto;
-  flex-grow: 1;
-}
+    &:nth-child(2) {
+      margin: 0 16px;
+    }
 
-.passport-list__item:nth-child(4) {
-  width: 100%;
-}
+    &:nth-child(3) {
+      flex-grow: 3;
+    }
+  }
 
-.passport-list__date .passport-list__item {
-  margin-left: 0;
-  width: 120px;
-}
-
-.passport-list__date .passport-list__label {
-  color: @gray-label;
-}
-
-.passport-list__input::placeholder {
-  .font-style(rgba(59,66,86,1));
-}
-
-.passport-list__date .passport-list__item:nth-child(2) {
-  margin: 0 16px;
-}
-
-.passport-list__date .passport-list__item:nth-child(3) {
-  flex-grow: 3;
+  .passport-list__label {
+    color: @gray-label;
+  }
 }
 
 .passport-list__input {
@@ -49,15 +56,8 @@
   height: 49px;
   padding-left: 10px;
   margin-bottom: 15px;
-}
 
-.passport-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.passport-list__date {
-  list-style: none;
-  display: flex;
-  padding: 0;
+  &::placeholder {
+    .font-style(rgba(59,66,86,1));
+  }
 }

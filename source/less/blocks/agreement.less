@@ -19,17 +19,17 @@
   padding-left: 11px;
   margin-bottom: 8px;
   position: relative;
-}
 
-.agreement__item::before {
-  content: "";
-  width: 2px;
-  height: 2px;
-  position: absolute;
-  top: 11px;
-  left: 1px;
-  border-radius: 50%;
-  border: 2px solid @gray;
+  &::before {
+    content: "";
+    width: 2px;
+    height: 2px;
+    position: absolute;
+    top: 11px;
+    left: 1px;
+    border-radius: 50%;
+    border: 2px solid @gray;
+  }
 }
 
 .agreement--block {
@@ -41,34 +41,39 @@
   position: relative;
   border: 2px solid @light-gray;
   border-radius: 4px;
+
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    border-radius: 1px;
+    border: 2px solid @gray;
+  }
 }
 
-.agreement--block::before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  border-radius: 1px;
-  border: 2px solid @gray;
-}
+.agreement__input {
+  left: 30px;
+  top: 37px;
 
-.agreement__input:checked ~ .agreement--block::before {
-  content: "";
-  border: none;
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  background-image: url("../img/checkbox-on.svg");
-}
+  &:checked ~ .agreement--block::before {
+    content: "";
+    border: none;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background-image: url("../img/checkbox-on.svg");
+  }
 
-.agreement__input:checked ~ .agreement--block {
-  background-color: @white;
-  border: 2px solid @blue;
-  border-radius: 4px;
+  &:checked ~ .agreement--block {
+    background-color: @white;
+    border: 2px solid @blue;
+    border-radius: 4px;
+  }
 }
 
 .agreement--flex {
@@ -86,11 +91,17 @@
   border-color: @yellow;
   padding-left: 50px;
   position: relative;
-}
 
-.agreement__warn::before {
-  content: "";
-  border: none;
+  &::before {
+    content: "";
+    border: none;
+  }
+
+  svg {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+  }
 }
 
 .agreement__email {
@@ -105,15 +116,4 @@
 
 .agreement__all {
   position: relative;
-}
-
-.agreement__input {
-  left: 30px;
-  top: 37px;
-}
-
-.agreement__warn svg {
-  position: absolute;
-  top: 14px;
-  left: 14px;
 }
