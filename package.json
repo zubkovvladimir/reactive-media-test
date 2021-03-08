@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "jquery": "^3.6.0",
+    "jquery.maskedinput": "^1.4.1",
     "normalize.css": "^8.0.1"
   }
 }

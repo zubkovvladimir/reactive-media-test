@@ -28,9 +28,41 @@
 
   var message = document.querySelector('.message-succes');
 
-  detailsWrap.addEventListener('invalid', function () {
-    onSecondStepClick();
-  }, true);
+  // validation second step
+
+  var inputsDetails = detailsWrap.querySelectorAll('input');
+
+  var checkInputsValidation = function () {
+    var errorsCount = 0;
+
+    inputsDetails.forEach(input => {
+      if (input.value === '') {
+        input.style.borderColor = 'red';
+        errorsCount += 1;
+      }
+
+      if (input.value !== '') {
+        input.style.borderColor = '';
+      };
+    });
+
+    if(errorsCount === 0) {
+      secondButton.removeEventListener('click',checkInputsValidation);
+      secondButton.addEventListener('click',onSecondButtonClick);
+    }
+  }
+
+  secondButton.addEventListener('click',checkInputsValidation);
+  form.addEventListener('change',checkInputsValidation);
+
+  $("#tel").mask("+7 (999) 999-99-99");
+  $("#series").mask("9999");
+  $("#number").mask("999999");
+  $("#day").mask("99");
+  $("#month").mask("99");
+  $("#year").mask("9999");
+
+  /* end validation */
 
   var hideThirdStep = function () {
     thirdStep.style.height = MIN_STEP_HEIGHT + 'px';
@@ -130,6 +162,5 @@
 
 
   firstButton.addEventListener('click', onFirstButtonClick);
-  secondButton.addEventListener('click', onSecondButtonClick);
   form.addEventListener('submit', onFormSubmit);
 })();

@@ -39,6 +39,7 @@ function images() {
 function scripts() {
   return src([
     'node_modules/jquery/dist/jquery.js',
+    'node_modules/jquery.maskedinput/src/jquery.maskedinput.js',
     'source/js/main.js'
   ])
   .pipe(concat('main.min.js'))
