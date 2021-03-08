@@ -10,8 +10,8 @@
   var IS_THIRD_STEP = 'third';
   var IS_SECOND_STEP = 'second';
 
-  var TIME_SPEED_MULTIPLIER = 3;
-  var INTERVAL_DELAY = 20;
+  var TIME_SPEED_MULTIPLIER = 5;
+  var INTERVAL_DELAY = 1;
 
   var form = document.querySelector('.form');
 
@@ -34,6 +34,7 @@
 
   var hideThirdStep = function () {
     thirdStep.style.height = MIN_STEP_HEIGHT + 'px';
+    agreementWrap.style.display = 'none';
     thirdStep.style.backgroundImage = 'url("./img/third-gray.svg")';
   }
 
@@ -49,9 +50,6 @@
   var onFirstStepClick = function () {
     var start = Date.now();
 
-    setStylesStep(secondStep, detailsWrap, declarantWrap, firstStep, IS_FIRST_STEP);
-    hideThirdStep();
-
     var timer = setInterval(function () {
       var timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
 
@@ -63,6 +61,9 @@
         firstStep.style.height = FIRST_STEP_MAX_HEIGHT + 'px';
         clearInterval(timer);
 
+        setStylesStep(secondStep, detailsWrap, declarantWrap, firstStep, IS_FIRST_STEP);
+        hideThirdStep();
+
         firstStep.removeEventListener('click', onFirstStepClick);
         secondStep.removeEventListener('click', onSecondStepClick);
       };
@@ -72,8 +73,6 @@
 
   var onFirstButtonClick = function () {
     var start = Date.now();
-
-    setStylesStep(firstStep, declarantWrap, detailsWrap, secondStep, IS_SECOND_STEP);
 
     var timer = setInterval(function () {
       var timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
@@ -86,6 +85,9 @@
         secondStep.style.height = SECOND_STEP_MAX_HEIGHT + 'px';
         clearInterval(timer);
 
+        setStylesStep(firstStep, declarantWrap, detailsWrap, secondStep, IS_SECOND_STEP);
+        hideThirdStep();
+
         firstStep.addEventListener('click', onFirstStepClick);
       };
 
@@ -95,13 +97,10 @@
   var onSecondStepClick = function () {
     onFirstButtonClick();
     secondStep.removeEventListener('click', onSecondStepClick);
-    hideThirdStep();
   }
 
   var onSecondButtonClick =  function () {
     var start = Date.now();
-
-    setStylesStep(secondStep, detailsWrap, agreementWrap, thirdStep, IS_THIRD_STEP);
 
     var timer = setInterval(function () {
       var timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
@@ -113,6 +112,8 @@
       if (timePassed > THIRD_STEP_MAX_HEIGHT) {
         thirdStep.style.height = THIRD_STEP_MAX_HEIGHT + 'px';
         clearInterval(timer);
+
+        setStylesStep(secondStep, detailsWrap, agreementWrap, thirdStep, IS_THIRD_STEP);
 
         secondStep.addEventListener('click', onSecondStepClick);
       };

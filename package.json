@@ -11,7 +11,6 @@
     "gulp-autoprefixer": "^7.0.1",
     "gulp-concat": "^2.6.x",
     "gulp-csso": "^4.0.1",
-    "gulp-htmlmin": "^5.0.x",
     "gulp-imagemin": "^7.1.0",
     "gulp-less": "4.0.x",
     "gulp-plumber": "^1.2.x",

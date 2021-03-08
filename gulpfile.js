@@ -24,7 +24,6 @@ function styles() {
     .pipe(rename('style.min.css'))
     .pipe(sourcemap.write("."))
     .pipe(dest('build/css'))
-    .pipe(server.stream())
 }
 
 function images() {
@@ -45,13 +44,13 @@ function scripts() {
   .pipe(concat('main.min.js'))
   .pipe(uglify())
   .pipe(dest('build/js'))
-  .pipe(server.stream())
 }
 
 function copy() {
   return src([
     'source/*.html',
-    'source/img/**/*.{png,jpg,svg}'
+    'source/img/**/*.{png,jpg,svg}',
+    'source/fonts/*.ttf'
   ], {
     base: 'source'
   })

@@ -1,6 +1,6 @@
-.font-style(@color: @gray, @line-height: 24px, @font-size: 18px, @font-weight: 400) {
+.font-style(@color: @gray, @line-height: 24px, @font-size: 18px, @font-weight: 400, @font-family: "GOST") {
   color: @color;
-  font-family: "Arial Rounded MT Bold", sans-serif;
+  font-family: @font-family, "Arial", sans-serif;
   line-height: @line-height;
   font-size: @font-size;
   font-weight: @font-weight;
@@ -10,4 +10,13 @@
   background-image: url("../img/agree-icon.svg");
   background-repeat: no-repeat;
   background-position: 16px 16px;
+}
+
+.font-face(@font-name, @path, @weight: normal, @style: normal) {
+  @font-face {
+    font-family: @font-name;
+    src: url("@{path}.ttf") format("ttf");
+    font-weight: @weight;
+    font-style: @style;
+  }
 }
