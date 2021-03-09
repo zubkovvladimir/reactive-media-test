@@ -13,6 +13,7 @@ const jpegtran = require('imagemin-jpegtran');
 const plumber = require('gulp-plumber');
 const sourcemap = require('gulp-sourcemaps');
 const csso = require("gulp-csso");
+const babel = require("gulp-babel");
 
 function styles() {
   return src('source/less/style.less')
@@ -38,10 +39,13 @@ function images() {
 
 function scripts() {
   return src([
-    'node_modules/jquery/dist/jquery.js',
+    'node_modules/jquery/dist/jquery.min.js',
     'node_modules/jquery.maskedinput/src/jquery.maskedinput.js',
     'source/js/main.js'
   ])
+  .pipe(babel({
+    presets: ['@babel/env']
+  }))
   .pipe(concat('main.min.js'))
   .pipe(uglify())
   .pipe(dest('build/js'))
