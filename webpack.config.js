@@ -11,7 +11,7 @@ module.exports = {
   entry: `./source/js/main.js`,
   output: {
     filename: `bundle.js`,
-    path: path.join(__dirname, `build/js`)
+    path: _path(`build/js`)
   },
   module: {
     loaders: [
@@ -29,9 +29,9 @@ module.exports = {
     })
   ],
   resolve: {
-    alias: {
-      'jquery.maskedinput': _path('node_modules/jquery.maskedinput/src/jquery.maskedinput.js')
-    },
+      alias: {
+        'jquery.maskedinput': _path('node_modules/jquery.maskedinput/src/jquery.maskedinput.js')
+      },
   },
   devtool: `source-map`,
 };
