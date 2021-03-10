@@ -27,23 +27,6 @@ const message = document.querySelector('.message-succes');
 
 // validation second step
 
-const checkInputsValidation = function (inputs) {
-  let errorsCount = 0;
-  const isChecbox = inputs[0].type === 'checkbox';
-
-  inputs.forEach(input => {
-    const isEmpty = isChecbox ? !(input.checked) : input.value === '';
-
-    if (isEmpty) {
-      isChecbox ? input.labels[0].style.borderColor = 'red' : input.style.borderColor = 'red';
-      errorsCount += 1;
-    } else if (input.value !== '') {
-      isChecbox ? input.labels[0].style.borderColor = '' : input.style.borderColor = '';
-    }
-  });
-  return errorsCount;
-};
-
 $('#tel').mask('+7 (999) 999-99-99');
 $('#series').mask('9999');
 $('#number').mask('999999');
@@ -110,7 +93,6 @@ const onFirstButtonClick = function () {
 
       firstStep.addEventListener('click', onFirstStepClick);
       secondButton.addEventListener('click', onSecondButtonClick);
-      form.addEventListener('change', onFormChange);
     }
   }, INTERVAL_DELAY);
 };
@@ -142,18 +124,52 @@ const showThirdStep = function () {
   }, INTERVAL_DELAY);
 };
 
+const checkInputsValidation = function (inputs) {
+  let errorsCount = 0;
+  const isChecbox = inputs[0].type === 'checkbox';
+
+  inputs.forEach(input => {
+    const isEmpty = isChecbox ? !(input.checked) : input.value === '';
+
+    isEmpty ? errorsCount += 1 : errorsCount;
+  });
+
+  return errorsCount;
+};
+
+const setInputsBorderRed = function (inputs) {
+  const isChecbox = inputs[0].type === 'checkbox';
+
+  inputs.forEach(input => {
+    const isEmpty = isChecbox ? !(input.checked) : input.value === '';
+
+    if (isEmpty) {
+      isChecbox ? input.labels[0].style.borderColor = 'red' : input.style.borderColor = 'red';
+    } else if (!isEmpty) {
+      isChecbox ? input.labels[0].style.borderColor = '' : input.style.borderColor = '';
+    }
+  });
+};
+
 const onSecondButtonClick = function () {
-  const inputs = detailsWrap.querySelectorAll('input');
-  const isErrors = checkInputsValidation(inputs);
+  const isErrors = getFormErrors(detailsWrap);
+  form.addEventListener('change', onFormChange);
 
   if (!isErrors) {
     showThirdStep();
   }
 };
 
-const onFormChange = function () {
-  const inputs = detailsWrap.querySelectorAll('input');
+const getFormErrors = function (step) {
+  const inputs = step.querySelectorAll('input');
+  setInputsBorderRed(inputs);
   const isErrors = checkInputsValidation(inputs);
+
+  return isErrors;
+};
+
+const onFormChange = function () {
+  const isErrors = getFormErrors(detailsWrap);
 
   if (!isErrors) {
     form.removeEventListener('change', onFormChange);
@@ -161,12 +177,24 @@ const onFormChange = function () {
   }
 };
 
-const onFormSubmit = function (evt) {
-  evt.preventDefault();
-  const inputs = agreementWrap.querySelectorAll('.agreement__input');
-  const isErrors = checkInputsValidation(inputs);
+const onChekboxChange = function () {
+  const isErrors = getFormErrors(agreementWrap);
 
   if (!isErrors) {
+    form.addEventListener('submit', onFormSubmit);
+  }
+};
+
+const onFormSubmit = function (evt) {
+  evt.preventDefault();
+  const isErrors = getFormErrors(agreementWrap);
+
+  if (isErrors) {
+    const checkboxes = agreementWrap.querySelectorAll('input');
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', onChekboxChange);
+    });
+  } else {
     form.style.display = 'none';
     message.style.display = 'block';
   }
