@@ -4,7 +4,8 @@ const less = require('gulp-less');
 const rename = require('gulp-rename');
 const server = require('browser-sync').create();
 const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
+const uglify = require('gulp-uglify-es');
+const { minify } = require("terser");
 const autoprefixer = require('gulp-autoprefixer');
 const del = require('del');
 const imagemin = require('gulp-imagemin');
@@ -14,6 +15,8 @@ const plumber = require('gulp-plumber');
 const sourcemap = require('gulp-sourcemaps');
 const csso = require("gulp-csso");
 const babel = require("gulp-babel");
+const gulpWebpack = require("gulp-webpack");
+const webpack = require("webpack");
 
 function styles() {
   return src('source/less/style.less')
@@ -38,16 +41,7 @@ function images() {
 }
 
 function scripts() {
-  return src([
-    'node_modules/jquery/dist/jquery.min.js',
-    'node_modules/jquery.maskedinput/src/jquery.maskedinput.js',
-    'source/js/main.js'
-  ])
-  .pipe(babel({
-    presets: ['@babel/env']
-  }))
-  .pipe(concat('main.min.js'))
-  .pipe(uglify())
+  return gulpWebpack(require('./webpack.config.js'), webpack)
   .pipe(dest('build/js'))
 }
 

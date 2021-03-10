@@ -1,3 +1,6 @@
+import { setStylesStep } from './utils.js';
+import 'jquery.maskedinput';
+
 const MIN_STEP_HEIGHT = 80;
 const FIRST_STEP_MAX_HEIGHT = 344;
 const SECOND_STEP_MAX_HEIGHT = 992;
@@ -40,15 +43,6 @@ const hideThirdStep = function () {
   thirdStep.style.height = MIN_STEP_HEIGHT + 'px';
   agreementWrap.style.display = 'none';
   thirdStep.style.backgroundImage = 'url("./img/third-gray.svg")';
-};
-
-const setStylesStep = function (resizeBlock, hideBlock, showBlock, backgroundBlock, stepNumber) {
-  resizeBlock.style.height = MIN_STEP_HEIGHT + 'px';
-  showBlock.style.display = 'flex';
-  hideBlock.style.display = 'none';
-  stepNumber === IS_FIRST_STEP ? resizeBlock.style.backgroundImage = 'url("./img/second-gray.svg")'
-    : resizeBlock.style.backgroundImage = 'url("./img/agree-icon.svg")';
-  backgroundBlock.style.backgroundImage = 'url("./img/' + stepNumber + '-blue.svg")';
 };
 
 const onFirstStepClick = function () {
