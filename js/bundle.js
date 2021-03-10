@@ -60,11 +60,198 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return setStylesStep; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return setInputsBorderRed; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return inputsMap; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return stepMap; });
+var MIN_STEP_HEIGHT = 80;
+var FIRST_STEP_MAX_HEIGHT = 344;
+var SECOND_STEP_MAX_HEIGHT = 992;
+var THIRD_STEP_MAX_HEIGHT = 855;
+var IS_FIRST_STEP = 'first';
+var IS_SECOND_STEP = 'second';
+var IS_THIRD_STEP = 'third';
+var stepMap = {
+  first: {
+    height: FIRST_STEP_MAX_HEIGHT,
+    name: IS_FIRST_STEP
+  },
+  second: {
+    height: SECOND_STEP_MAX_HEIGHT,
+    name: IS_SECOND_STEP
+  },
+  third: {
+    height: THIRD_STEP_MAX_HEIGHT,
+    name: IS_THIRD_STEP
+  }
+};
+var inputsMap = new Map([['#tel', '+7 (999) 999-99-99'], ['#series', '9999'], ['#number', '999999'], ['#day', '99'], ['#month', '99'], ['#year', '9999']]);
+
+var setStylesStep = function setStylesStep(resizeBlock, hideBlock, showBlock, backgroundBlock, stepNumber) {
+  resizeBlock.style.height = MIN_STEP_HEIGHT + 'px';
+  showBlock.style.display = 'flex';
+  hideBlock.style.display = 'none';
+  stepNumber === IS_FIRST_STEP ? resizeBlock.style.backgroundImage = 'url("./img/second-gray.svg")' : resizeBlock.style.backgroundImage = 'url("./img/agree-icon.svg")';
+  backgroundBlock.style.backgroundImage = 'url("./img/' + stepNumber + '-blue.svg")';
+};
+
+var setInputsBorderRed = function setInputsBorderRed(inputs) {
+  var isChecbox = inputs[0].type === 'checkbox';
+  inputs.forEach(function (input) {
+    var isEmpty = isChecbox ? !input.checked : input.value === '';
+
+    if (isEmpty) {
+      isChecbox ? input.labels[0].style.borderColor = 'red' : input.style.borderColor = 'red';
+    } else if (!isEmpty) {
+      isChecbox ? input.labels[0].style.borderColor = '' : input.style.borderColor = '';
+    }
+  });
+};
+
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return hideThirdStep; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return onChekboxChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return showThirdStep; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__validation_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__form__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__second__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_js__ = __webpack_require__(0);
+
+
+
+
+var MIN_STEP_HEIGHT = 80;
+var TIME_SPEED_MULTIPLIER = 5;
+var INTERVAL_DELAY = 1;
+var form = document.querySelector('.form');
+var thirdStep = form.querySelector('.agreement');
+var agreementWrap = form.querySelector('.agreement__wrap');
+var secondStep = form.querySelector('.details');
+var detailsWrap = form.querySelector('.details__wrap');
+
+var hideThirdStep = function hideThirdStep() {
+  thirdStep.style.height = MIN_STEP_HEIGHT + 'px';
+  agreementWrap.style.display = 'none';
+  thirdStep.style.backgroundImage = 'url("./img/third-gray.svg")';
+};
+
+var onChekboxChange = function onChekboxChange() {
+  var isErrors = Object(__WEBPACK_IMPORTED_MODULE_0__validation_js__["b" /* getFormErrors */])(agreementWrap);
+
+  if (!isErrors) {
+    form.addEventListener('submit', __WEBPACK_IMPORTED_MODULE_1__form__["b" /* onFormSubmit */]);
+  }
+};
+
+var showThirdStep = function showThirdStep() {
+  var start = Date.now();
+  Object(__WEBPACK_IMPORTED_MODULE_0__validation_js__["a" /* addInputsMask */])(__WEBPACK_IMPORTED_MODULE_3__utils_js__["a" /* inputsMap */]);
+  var timer = setInterval(function () {
+    var timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
+
+    if (timePassed > MIN_STEP_HEIGHT) {
+      thirdStep.style.height = timePassed + 'px';
+    }
+
+    if (timePassed > __WEBPACK_IMPORTED_MODULE_3__utils_js__["d" /* stepMap */].third.height) {
+      thirdStep.style.height = __WEBPACK_IMPORTED_MODULE_3__utils_js__["d" /* stepMap */].third.height + 'px';
+      clearInterval(timer);
+      Object(__WEBPACK_IMPORTED_MODULE_3__utils_js__["c" /* setStylesStep */])(secondStep, detailsWrap, agreementWrap, thirdStep, __WEBPACK_IMPORTED_MODULE_3__utils_js__["d" /* stepMap */].third.name);
+      secondStep.addEventListener('click', __WEBPACK_IMPORTED_MODULE_2__second__["b" /* onSecondStepClick */]);
+      form.addEventListener('submit', __WEBPACK_IMPORTED_MODULE_1__form__["b" /* onFormSubmit */]);
+    }
+  }, INTERVAL_DELAY);
+};
+
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getFormErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addInputsMask; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(0);
+
+
+var checkInputsValidation = function checkInputsValidation(inputs) {
+  var errorsCount = 0;
+  var isChecbox = inputs[0].type === 'checkbox';
+  inputs.forEach(function (input) {
+    var isEmpty = isChecbox ? !input.checked : input.value === '';
+    isEmpty ? errorsCount += 1 : errorsCount;
+  });
+  return errorsCount;
+};
+
+var getFormErrors = function getFormErrors(step) {
+  var inputs = step.querySelectorAll('input');
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* setInputsBorderRed */])(inputs);
+  var isErrors = checkInputsValidation(inputs);
+  return isErrors;
+};
+
+var addInputsMask = function addInputsMask(inputs) {
+  inputs.forEach(function (value, key) {
+    $(key).mask(value);
+  });
+};
+
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return onSecondButtonClick; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return onSecondStepClick; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__validation_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__first__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__third__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form__ = __webpack_require__(6);
+
+
+
+
+var form = document.querySelector('.form');
+var secondStep = form.querySelector('.details');
+var detailsWrap = form.querySelector('.details__wrap');
+
+var onSecondStepClick = function onSecondStepClick() {
+  Object(__WEBPACK_IMPORTED_MODULE_1__first__["a" /* onFirstButtonClick */])();
+  secondStep.removeEventListener('click', onSecondStepClick);
+};
+
+var onSecondButtonClick = function onSecondButtonClick() {
+  var isErrors = Object(__WEBPACK_IMPORTED_MODULE_0__validation_js__["b" /* getFormErrors */])(detailsWrap);
+  form.addEventListener('change', __WEBPACK_IMPORTED_MODULE_3__form__["a" /* onFormChange */]);
+
+  if (!isErrors) {
+    Object(__WEBPACK_IMPORTED_MODULE_2__third__["c" /* showThirdStep */])();
+  }
+};
+
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10952,178 +11139,106 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_maskedinput__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jquery_maskedinput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jquery_maskedinput__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return onFirstButtonClick; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__third__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__second__ = __webpack_require__(3);
 
 
-const MIN_STEP_HEIGHT = 80;
-const FIRST_STEP_MAX_HEIGHT = 344;
-const SECOND_STEP_MAX_HEIGHT = 992;
-const THIRD_STEP_MAX_HEIGHT = 855;
-const IS_FIRST_STEP = 'first';
-const IS_THIRD_STEP = 'third';
-const IS_SECOND_STEP = 'second';
-const TIME_SPEED_MULTIPLIER = 5;
-const INTERVAL_DELAY = 1;
-const form = document.querySelector('.form');
-const firstStep = form.querySelector('.declarant');
-const secondStep = form.querySelector('.details');
-const thirdStep = form.querySelector('.agreement');
-const firstButton = firstStep.querySelector('.btn');
-const secondButton = secondStep.querySelector('.btn');
-const declarantWrap = form.querySelector('.declarant__wrap');
-const detailsWrap = form.querySelector('.details__wrap');
-const agreementWrap = form.querySelector('.agreement__wrap');
-const message = document.querySelector('.message-succes'); // validation second step
 
-$('#tel').mask('+7 (999) 999-99-99');
-$('#series').mask('9999');
-$('#number').mask('999999');
-$('#day').mask('99');
-$('#month').mask('99');
-$('#year').mask('9999');
-/* end validation */
+var MIN_STEP_HEIGHT = 80;
+var TIME_SPEED_MULTIPLIER = 5;
+var INTERVAL_DELAY = 1;
+var form = document.querySelector('.form');
+var firstStep = form.querySelector('.declarant');
+var secondStep = form.querySelector('.details');
+var secondButton = secondStep.querySelector('.btn');
+var declarantWrap = form.querySelector('.declarant__wrap');
+var detailsWrap = form.querySelector('.details__wrap');
 
-const hideThirdStep = function () {
-  thirdStep.style.height = MIN_STEP_HEIGHT + 'px';
-  agreementWrap.style.display = 'none';
-  thirdStep.style.backgroundImage = 'url("./img/third-gray.svg")';
-};
-
-const onFirstStepClick = function () {
-  const start = Date.now();
-  const timer = setInterval(function () {
-    const timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
+var onFirstStepClick = function onFirstStepClick() {
+  var start = Date.now();
+  var timer = setInterval(function () {
+    var timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
 
     if (timePassed > MIN_STEP_HEIGHT) {
       firstStep.style.height = timePassed + 'px';
     }
 
-    if (timePassed > FIRST_STEP_MAX_HEIGHT) {
-      firstStep.style.height = FIRST_STEP_MAX_HEIGHT + 'px';
+    if (timePassed > __WEBPACK_IMPORTED_MODULE_0__utils_js__["d" /* stepMap */].first.height) {
+      firstStep.style.height = __WEBPACK_IMPORTED_MODULE_0__utils_js__["d" /* stepMap */].first.height + 'px';
       clearInterval(timer);
-      Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* setStylesStep */])(secondStep, detailsWrap, declarantWrap, firstStep, IS_FIRST_STEP);
-      hideThirdStep();
+      Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["c" /* setStylesStep */])(secondStep, detailsWrap, declarantWrap, firstStep, __WEBPACK_IMPORTED_MODULE_0__utils_js__["d" /* stepMap */].first.name);
+      Object(__WEBPACK_IMPORTED_MODULE_1__third__["a" /* hideThirdStep */])();
       firstStep.removeEventListener('click', onFirstStepClick);
-      secondStep.removeEventListener('click', onSecondStepClick);
+      secondStep.removeEventListener('click', __WEBPACK_IMPORTED_MODULE_2__second__["b" /* onSecondStepClick */]);
     }
   }, INTERVAL_DELAY);
 };
 
-const onFirstButtonClick = function () {
-  const start = Date.now();
-  const timer = setInterval(function () {
-    const timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
+var onFirstButtonClick = function onFirstButtonClick() {
+  var start = Date.now();
+  var timer = setInterval(function () {
+    var timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
 
     if (timePassed > MIN_STEP_HEIGHT) {
       secondStep.style.height = timePassed + 'px';
     }
 
-    if (timePassed > SECOND_STEP_MAX_HEIGHT) {
-      secondStep.style.height = SECOND_STEP_MAX_HEIGHT + 'px';
+    if (timePassed > __WEBPACK_IMPORTED_MODULE_0__utils_js__["d" /* stepMap */].second.height) {
+      secondStep.style.height = __WEBPACK_IMPORTED_MODULE_0__utils_js__["d" /* stepMap */].second.height + 'px';
       clearInterval(timer);
-      Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* setStylesStep */])(firstStep, declarantWrap, detailsWrap, secondStep, IS_SECOND_STEP);
-      hideThirdStep();
+      Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["c" /* setStylesStep */])(firstStep, declarantWrap, detailsWrap, secondStep, __WEBPACK_IMPORTED_MODULE_0__utils_js__["d" /* stepMap */].second.name);
+      Object(__WEBPACK_IMPORTED_MODULE_1__third__["a" /* hideThirdStep */])();
       firstStep.addEventListener('click', onFirstStepClick);
-      secondButton.addEventListener('click', onSecondButtonClick);
+      secondButton.addEventListener('click', __WEBPACK_IMPORTED_MODULE_2__second__["a" /* onSecondButtonClick */]);
     }
   }, INTERVAL_DELAY);
 };
 
-const onSecondStepClick = function () {
-  onFirstButtonClick();
-  secondStep.removeEventListener('click', onSecondStepClick);
-};
 
-const showThirdStep = function () {
-  const start = Date.now();
-  const timer = setInterval(function () {
-    const timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
 
-    if (timePassed > MIN_STEP_HEIGHT) {
-      thirdStep.style.height = timePassed + 'px';
-    }
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-    if (timePassed > THIRD_STEP_MAX_HEIGHT) {
-      thirdStep.style.height = THIRD_STEP_MAX_HEIGHT + 'px';
-      clearInterval(timer);
-      Object(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* setStylesStep */])(secondStep, detailsWrap, agreementWrap, thirdStep, IS_THIRD_STEP);
-      secondStep.addEventListener('click', onSecondStepClick);
-      form.addEventListener('submit', onFormSubmit);
-    }
-  }, INTERVAL_DELAY);
-};
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return onFormSubmit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return onFormChange; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__validation_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__steps_second__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__steps_third__ = __webpack_require__(1);
 
-const checkInputsValidation = function (inputs) {
-  let errorsCount = 0;
-  const isChecbox = inputs[0].type === 'checkbox';
-  inputs.forEach(input => {
-    const isEmpty = isChecbox ? !input.checked : input.value === '';
-    isEmpty ? errorsCount += 1 : errorsCount;
-  });
-  return errorsCount;
-};
 
-const setInputsBorderRed = function (inputs) {
-  const isChecbox = inputs[0].type === 'checkbox';
-  inputs.forEach(input => {
-    const isEmpty = isChecbox ? !input.checked : input.value === '';
 
-    if (isEmpty) {
-      isChecbox ? input.labels[0].style.borderColor = 'red' : input.style.borderColor = 'red';
-    } else if (!isEmpty) {
-      isChecbox ? input.labels[0].style.borderColor = '' : input.style.borderColor = '';
-    }
-  });
-};
+var form = document.querySelector('.form');
+var secondStep = form.querySelector('.details');
+var secondButton = secondStep.querySelector('.btn');
+var detailsWrap = form.querySelector('.details__wrap');
+var agreementWrap = form.querySelector('.agreement__wrap');
+var message = document.querySelector('.message-succes');
 
-const onSecondButtonClick = function () {
-  const isErrors = getFormErrors(detailsWrap);
-  form.addEventListener('change', onFormChange);
-
-  if (!isErrors) {
-    showThirdStep();
-  }
-};
-
-const getFormErrors = function (step) {
-  const inputs = step.querySelectorAll('input');
-  setInputsBorderRed(inputs);
-  const isErrors = checkInputsValidation(inputs);
-  return isErrors;
-};
-
-const onFormChange = function () {
-  const isErrors = getFormErrors(detailsWrap);
+var onFormChange = function onFormChange() {
+  var isErrors = Object(__WEBPACK_IMPORTED_MODULE_0__validation_js__["b" /* getFormErrors */])(detailsWrap);
 
   if (!isErrors) {
     form.removeEventListener('change', onFormChange);
-    secondButton.addEventListener('click', onSecondButtonClick);
+    secondButton.addEventListener('click', __WEBPACK_IMPORTED_MODULE_1__steps_second__["a" /* onSecondButtonClick */]);
   }
 };
 
-const onChekboxChange = function () {
-  const isErrors = getFormErrors(agreementWrap);
-
-  if (!isErrors) {
-    form.addEventListener('submit', onFormSubmit);
-  }
-};
-
-const onFormSubmit = function (evt) {
+var onFormSubmit = function onFormSubmit(evt) {
   evt.preventDefault();
-  const isErrors = getFormErrors(agreementWrap);
+  var isErrors = Object(__WEBPACK_IMPORTED_MODULE_0__validation_js__["b" /* getFormErrors */])(agreementWrap);
 
   if (isErrors) {
-    const checkboxes = agreementWrap.querySelectorAll('input');
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', onChekboxChange);
+    var checkboxes = agreementWrap.querySelectorAll('input');
+    checkboxes.forEach(function (checkbox) {
+      checkbox.addEventListener('change', __WEBPACK_IMPORTED_MODULE_2__steps_third__["b" /* onChekboxChange */]);
     });
   } else {
     form.style.display = 'none';
@@ -11131,36 +11246,30 @@ const onFormSubmit = function (evt) {
   }
 };
 
-firstButton.addEventListener('click', onFirstButtonClick);
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
 
 /***/ }),
-/* 2 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return setStylesStep; });
-const MIN_STEP_HEIGHT = 80;
-const IS_FIRST_STEP = 'first';
-
-const setStylesStep = function (resizeBlock, hideBlock, showBlock, backgroundBlock, stepNumber) {
-  resizeBlock.style.height = MIN_STEP_HEIGHT + 'px';
-  showBlock.style.display = 'flex';
-  hideBlock.style.display = 'none';
-  stepNumber === IS_FIRST_STEP ? resizeBlock.style.backgroundImage = 'url("./img/second-gray.svg")' : resizeBlock.style.backgroundImage = 'url("./img/agree-icon.svg")';
-  backgroundBlock.style.backgroundImage = 'url("./img/' + stepNumber + '-blue.svg")';
-};
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery_maskedinput__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery_maskedinput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery_maskedinput__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__steps_first__ = __webpack_require__(5);
 
 
+var firstButton = document.querySelector('.btn');
+firstButton.addEventListener('click', __WEBPACK_IMPORTED_MODULE_1__steps_first__["a" /* onFirstButtonClick */]);
 
 /***/ }),
-/* 3 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
     if (true) {
         // AMD. Register as an anonymous module.
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
