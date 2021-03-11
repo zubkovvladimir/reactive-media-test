@@ -1,4 +1,3 @@
-const MIN_STEP_HEIGHT = 80;
 const FIRST_STEP_MAX_HEIGHT = 344;
 const SECOND_STEP_MAX_HEIGHT = 992;
 const THIRD_STEP_MAX_HEIGHT = 855;
@@ -31,15 +30,6 @@ const inputsMap = new Map([
   ['#year', '9999']
 ]);
 
-const setStylesStep = function (resizeBlock, hideBlock, showBlock, backgroundBlock, stepNumber) {
-  resizeBlock.style.height = MIN_STEP_HEIGHT + 'px';
-  showBlock.style.display = 'flex';
-  hideBlock.style.display = 'none';
-  stepNumber === IS_FIRST_STEP ? resizeBlock.style.backgroundImage = 'url("./img/second-gray.svg")'
-    : resizeBlock.style.backgroundImage = 'url("./img/agree-icon.svg")';
-  backgroundBlock.style.backgroundImage = 'url("./img/' + stepNumber + '-blue.svg")';
-};
-
 const setInputsBorderRed = function (inputs) {
   const isChecbox = inputs[0].type === 'checkbox';
 
@@ -55,7 +45,6 @@ const setInputsBorderRed = function (inputs) {
 };
 
 export {
-  setStylesStep,
   setInputsBorderRed,
   inputsMap,
   stepMap

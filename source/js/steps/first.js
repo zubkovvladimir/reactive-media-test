@@ -1,11 +1,10 @@
-import { setStylesStep, stepMap, inputsMap } from '../utils.js';
+import { stepMap, inputsMap } from '../utils.js';
 import { hideThirdStep } from './third';
 import { onSecondButtonClick, onSecondStepClick } from './second';
 import { addInputsMask } from '../validation.js';
 
+const ANIMATION_INTERVAL = 500;
 const MIN_STEP_HEIGHT = 80;
-const TIME_SPEED_MULTIPLIER = 5;
-const INTERVAL_DELAY = 1;
 
 const form = document.querySelector('.form');
 
@@ -17,51 +16,48 @@ const declarantWrap = form.querySelector('.declarant__wrap');
 const detailsWrap = form.querySelector('.details__wrap');
 
 const onFirstStepClick = function () {
-  const start = Date.now();
+  $(secondStep).animate({
+    height: MIN_STEP_HEIGHT + 'px'
+  },
+  ANIMATION_INTERVAL);
 
-  const timer = setInterval(function () {
-    const timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
+  $(firstStep).animate({
+    height: stepMap.first.height + 'px'
+  },
+  ANIMATION_INTERVAL,
+  function () {
+    hideThirdStep();
+    firstStep.removeEventListener('click', onFirstStepClick);
+    secondStep.removeEventListener('click', onSecondStepClick);
+    detailsWrap.style.display = 'none';
+  });
 
-    if (timePassed > MIN_STEP_HEIGHT) {
-      firstStep.style.height = timePassed + 'px';
-    }
-
-    if (timePassed > stepMap.first.height) {
-      firstStep.style.height = stepMap.first.height + 'px';
-      clearInterval(timer);
-
-      setStylesStep(secondStep, detailsWrap, declarantWrap, firstStep, stepMap.first.name);
-      hideThirdStep();
-
-      firstStep.removeEventListener('click', onFirstStepClick);
-      secondStep.removeEventListener('click', onSecondStepClick);
-    }
-  }, INTERVAL_DELAY);
+  secondStep.style.backgroundImage = 'url("./img/second-gray.svg")';
+  firstStep.style.backgroundImage = 'url("./img/' + stepMap.first.name + '-blue.svg")';
+  declarantWrap.style.display = 'flex';
 };
 
 const onFirstButtonClick = function () {
-  const start = Date.now();
-
   addInputsMask(inputsMap);
 
-  const timer = setInterval(function () {
-    const timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;
+  $(firstStep).animate({
+    height: MIN_STEP_HEIGHT + 'px'
+  },
+  ANIMATION_INTERVAL);
 
-    if (timePassed > MIN_STEP_HEIGHT) {
-      secondStep.style.height = timePassed + 'px';
-    }
+  $(secondStep).animate({
+    height: stepMap.second.height + 'px'
+  },
+  ANIMATION_INTERVAL,
+  function () {
+    firstStep.addEventListener('click', onFirstStepClick);
+    secondButton.addEventListener('click', onSecondButtonClick);
+    declarantWrap.style.display = 'none';
+  });
 
-    if (timePassed > stepMap.second.height) {
-      secondStep.style.height = stepMap.second.height + 'px';
-      clearInterval(timer);
-
-      setStylesStep(firstStep, declarantWrap, detailsWrap, secondStep, stepMap.second.name);
-      hideThirdStep();
-
-      firstStep.addEventListener('click', onFirstStepClick);
-      secondButton.addEventListener('click', onSecondButtonClick);
-    }
-  }, INTERVAL_DELAY);
+  firstStep.style.backgroundImage = 'url("./img/agree-icon.svg")';
+  detailsWrap.style.display = 'flex';
+  secondStep.style.backgroundImage = 'url("./img/' + stepMap.second.name + '-blue.svg")';
 };
 
 export {

@@ -1,14 +1,26 @@
 import { getFormErrors } from '../validation.js';
 import { onFirstButtonClick } from './first';
-import { showThirdStep } from './third';
+import { showThirdStep, hideThirdStep } from './third';
 import { onFormChange } from '../form';
+
+const MIN_STEP_HEIGHT = 80;
+const ANIMATION_INTERVAL = 500;
 
 const form = document.querySelector('.form');
 const secondStep = form.querySelector('.details');
+const thirdStep = form.querySelector('.agreement');
 const detailsWrap = form.querySelector('.details__wrap');
 
 const onSecondStepClick = function () {
-  onFirstButtonClick();
+  $(thirdStep).animate({
+    height: MIN_STEP_HEIGHT + 'px'
+  },
+  ANIMATION_INTERVAL,
+  function () {
+    onFirstButtonClick();
+  });
+
+  hideThirdStep();
   secondStep.removeEventListener('click', onSecondStepClick);
 };
 
@@ -17,7 +29,13 @@ const onSecondButtonClick = function () {
   form.addEventListener('change', onFormChange);
 
   if (!isErrors) {
-    showThirdStep();
+    $(secondStep).animate({
+      height: MIN_STEP_HEIGHT + 'px'
+    },
+    ANIMATION_INTERVAL,
+    function () {
+      showThirdStep();
+    });
   }
 };
 

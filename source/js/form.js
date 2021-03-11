@@ -27,6 +27,7 @@ const onFormSubmit = function (evt) {
 
   if (isErrors) {
     const checkboxes = agreementWrap.querySelectorAll('input');
+
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener('change', onChekboxChange);
     });
