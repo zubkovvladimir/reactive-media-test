@@ -10,7 +10,7 @@
     "babel-loader": "8.2.2",
     "browser-sync": "^2.26.14",
     "del": "^6.0.0",
-    "eslint": "^7.2.0",
+    "eslint": "^7.21.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "gulp": "^4.0.2",
@@ -33,6 +33,7 @@
     "stylelint": "^10.1.0",
     "stylelint-config-htmlacademy": "^0.1.4",
     "terser-webpack-plugin": "5.1.1",
+    "uglifyjs-3-webpack-plugin": "^1.2.4",
     "uglifyjs-webpack-plugin": "2.2.0",
     "webpack": "3.3.0"
   },

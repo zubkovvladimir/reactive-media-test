@@ -1,5 +1,6 @@
 const path = require(`path`);
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-3-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 
@@ -26,6 +27,9 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
+    }),
+    new UglifyJsPlugin({
+      sourceMap: true
     })
   ],
   resolve: {
