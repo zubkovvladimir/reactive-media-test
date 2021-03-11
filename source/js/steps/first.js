@@ -1,6 +1,7 @@
-import { setStylesStep, stepMap } from '../utils.js';
+import { setStylesStep, stepMap, inputsMap } from '../utils.js';
 import { hideThirdStep } from './third';
 import { onSecondButtonClick, onSecondStepClick } from './second';
+import { addInputsMask } from '../validation.js';
 
 const MIN_STEP_HEIGHT = 80;
 const TIME_SPEED_MULTIPLIER = 5;
@@ -40,6 +41,8 @@ const onFirstStepClick = function () {
 
 const onFirstButtonClick = function () {
   const start = Date.now();
+
+  addInputsMask(inputsMap);
 
   const timer = setInterval(function () {
     const timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;

@@ -3,9 +3,6 @@ const { src, dest, watch, series, parallel } = require('gulp');
 const less = require('gulp-less');
 const rename = require('gulp-rename');
 const server = require('browser-sync').create();
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify-es');
-const { minify } = require("terser");
 const autoprefixer = require('gulp-autoprefixer');
 const del = require('del');
 const imagemin = require('gulp-imagemin');
@@ -14,7 +11,6 @@ const jpegtran = require('imagemin-jpegtran');
 const plumber = require('gulp-plumber');
 const sourcemap = require('gulp-sourcemaps');
 const csso = require("gulp-csso");
-const babel = require("gulp-babel");
 const gulpWebpack = require("gulp-webpack");
 const webpack = require("webpack");
 

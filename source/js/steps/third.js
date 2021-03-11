@@ -1,7 +1,7 @@
-import { getFormErrors, addInputsMask } from '../validation.js';
+import { getFormErrors } from '../validation.js';
 import { onFormSubmit } from '../form';
 import { onSecondStepClick } from './second';
-import { setStylesStep, stepMap, inputsMap } from '../utils.js';
+import { setStylesStep, stepMap } from '../utils.js';
 
 const MIN_STEP_HEIGHT = 80;
 const TIME_SPEED_MULTIPLIER = 5;
@@ -29,8 +29,6 @@ const onChekboxChange = function () {
 
 const showThirdStep = function () {
   const start = Date.now();
-
-  addInputsMask(inputsMap);
 
   const timer = setInterval(function () {
     const timePassed = (Date.now() - start) * TIME_SPEED_MULTIPLIER;

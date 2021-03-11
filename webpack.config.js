@@ -1,6 +1,5 @@
 const path = require(`path`);
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-3-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 
@@ -9,17 +8,24 @@ function _path(p) {
 }
 
 module.exports = {
-  entry: `./source/js/main.js`,
+  mode: 'none',
+  context: path.resolve(__dirname, 'source'),
+  entry: `./js/main.js`,
   output: {
     filename: `bundle.js`,
     path: _path(`build/js`)
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       }
     ]
   },
@@ -28,14 +34,24 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    new UglifyJsPlugin({
-      sourceMap: true
-    })
   ],
   resolve: {
       alias: {
         'jquery.maskedinput': _path('node_modules/jquery.maskedinput/src/jquery.maskedinput.js')
       },
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          output: {
+            comments: false
+          },
+        },
+      extractComments: false
+    }),
+  ],
   },
   devtool: `source-map`,
 };
